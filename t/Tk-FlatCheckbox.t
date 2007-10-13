@@ -2,15 +2,15 @@
 # -*- perl -*-
 
 #
-# $Id: Tk-FlatCheckbox.t,v 1.1 2007/10/13 21:39:39 eserte Exp $
+# $Id: Tk-FlatCheckbox.t,v 1.2 2007/10/13 21:46:20 eserte Exp $
 # Author: Slaven Rezic
 #
-# Copyright (C) 1998,2004 Slaven Rezic. All rights reserved.
+# Copyright (C) 1998,2004,2007 Slaven Rezic. All rights reserved.
 # This program is free software; you can redistribute it and/or
 # modify it under the same terms as Perl itself.
 #
-# Mail: eserte@cs.tu-berlin.de
-# WWW:  http://user.cs.tu-berlin.de/~eserte/
+# Mail: srezic@cpan.org
+# WWW:  http://www.rezic.de/eserte/
 #
 
 use strict;
@@ -28,7 +28,7 @@ BEGIN {
 
 if (!defined $ENV{BATCH}) { $ENV{BATCH} = 1 }
 
-plan tests => 7;
+plan tests => 10;
 
 use_ok("Tk::FlatCheckbox");
 
@@ -39,30 +39,30 @@ my $on = 0;
 my $on2;
 my $cb = $top->FlatCheckbox(-image => $p,
 			    -variable => \$on,
-			    -command => sub { warn $on },
+			    -command => sub { print "# Current value is: $on\n" },
 			    -borderwidth => 20,
 			   )->pack;
 isa_ok($cb, "Tk::FlatCheckbox");
 my $cb2 = $top->FlatCheckbox(-image => $p,
 			     -variable => \$on,
-			     -command => sub { warn $on },
+			     -command => sub { print "# Current value is: $on\n" },
 			     -raiseonenter => 1,
 			    )->pack;
 isa_ok($cb2, "Tk::FlatCheckbox");
 my $cb3 = $top->FlatCheckbox(-text => "Text",
 			     -variable => \$on,
-			     -command => sub { warn $on },
+			     -command => sub { print "# Current value is: $on\n" },
 			    )->pack;
 isa_ok($cb3, "Tk::FlatCheckbox");
 my $cb4 = $top->FlatCheckbox(-text => "Text",
 			     -variable => \$on,
-			     -command => sub { warn $on },
+			     -command => sub { print "# Current value is: $on\n" },
 			     -raiseonenter => 1,
 			    )->pack;
 isa_ok($cb4, "Tk::FlatCheckbox");
 my $cb5 = $top->FlatCheckbox(-text => "Other value",
 			     -variable => \$on2,
-			     -command => sub { warn $on2 },
+			     -command => sub { print "# Current value is: $on2\n" },
 			     -raiseonenter => 1,
 			     -onvalue => "on",
 			     -offvalue => "off",
@@ -74,19 +74,17 @@ my $sb = $top->Checkbutton(-text => "Shared",
 			  )->pack;
 if (!$ENV{BATCH}) {
     MainLoop;
+    for (1..3) { pass("skipping automatic tests") }
 } else {
     $top->update;
+    is($on, 0, "Initial variable value");
     $cb->invoke;
     $top->update;
     select undef, undef, undef, 0.3;
-    if ($on != 1) {
-	exit 1;
-    }
+    is($on, 1, "After invoke");
     $cb->invoke;
     $top->update;
-    if ($on != 0) {
-	exit 2;
-    }
+    is($on, 0, "Again after invoke");
 }
 
 pass("FlatCheckbox demo");
