@@ -2,7 +2,7 @@
 # -*- perl -*-
 
 #
-# $Id: Tk-FlatCheckbox.t,v 1.2 2007/10/13 21:46:20 eserte Exp $
+# $Id: Tk-FlatCheckbox.t,v 1.3 2007/10/13 21:48:42 eserte Exp $
 # Author: Slaven Rezic
 #
 # Copyright (C) 1998,2004,2007 Slaven Rezic. All rights reserved.
@@ -33,6 +33,7 @@ plan tests => 10;
 use_ok("Tk::FlatCheckbox");
 
 my $top = tkinit;
+$top->geometry("+10+10");
 #$top->optionAdd("*FlatCheckbox*background" => "green", "userDefault");
 my $p = $top->Photo(-file => Tk->findINC("icon.gif"));
 my $on = 0;
