@@ -1,7 +1,7 @@
 # -*- perl -*-
 
 #
-# $Id: FlatRadiobutton.pm,v 1.2 2007/10/19 20:54:33 eserte Exp $
+# $Id: FlatRadiobutton.pm,v 1.3 2007/10/19 20:55:49 eserte Exp $
 # Author: Slaven Rezic
 #
 # Copyright (C) 2001,2007 Slaven Rezic. All rights reserved.
@@ -20,7 +20,7 @@ use strict;
 use vars qw($VERSION @ISA);
 Construct Tk::Widget 'FlatRadiobutton';
 
-$VERSION = '0.06';
+$VERSION = '0.07';
 
 sub Populate {
     my($w,$args) = @_;
