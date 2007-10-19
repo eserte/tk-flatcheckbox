@@ -2,7 +2,7 @@ use ExtUtils::MakeMaker;
 
 WriteMakefile(
     NAME              => 'Tk::FlatCheckbox',
-    VERSION           => '0.07_50',
+    VERSION           => '0.08',
     PREREQ_PM         => { Tk => 0 },
     ($] >= 5.005 ?
       (ABSTRACT_FROM  => 'lib/Tk/FlatCheckbox.pm',

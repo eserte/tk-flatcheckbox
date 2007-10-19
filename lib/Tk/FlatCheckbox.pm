@@ -1,7 +1,7 @@
 # -*- perl -*-
 
 #
-# $Id: FlatCheckbox.pm,v 1.2 2007/10/19 20:54:37 eserte Exp $
+# $Id: FlatCheckbox.pm,v 1.3 2007/10/19 20:55:38 eserte Exp $
 # Author: Slaven Rezic
 #
 # Copyright (C) 1998,2001,2002,2007 Slaven Rezic. All rights reserved.
@@ -22,7 +22,7 @@ use vars qw($VERSION @ISA);
 @ISA = qw(Tk::Derived Tk::Canvas);
 Construct Tk::Widget 'FlatCheckbox';
 
-$VERSION = '0.07';
+$VERSION = '0.08';
 
 my %trace;
 my %trace_rev;
