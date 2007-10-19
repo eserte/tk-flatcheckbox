@@ -1,5 +1,8 @@
 Revision history for Perl extension Tk::FlatCheckbox.
 
+0.08
+	- added Pod
+
 0.07_50
 	- first public devel version
 
