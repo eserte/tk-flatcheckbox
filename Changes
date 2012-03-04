@@ -1,5 +1,9 @@
 Revision history for Perl extension Tk::FlatCheckbox.
 
+0.09
+	- modernized Makefile.PL
+	- don't run tests if DISPLAY is not available
+
 0.08
 	- added Pod
 
