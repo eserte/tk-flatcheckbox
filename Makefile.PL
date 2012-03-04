@@ -1,12 +1,27 @@
 use ExtUtils::MakeMaker;
 
+$is_devel_host = defined $ENV{USER} && $ENV{USER} eq 'eserte' && $^O =~ /bsd/i && -f "../../perl.release.mk";
+$eumm_recent_enough = $ExtUtils::MakeMaker::VERSION >= 6.54;
+
+if (!$eumm_recent_enough) {
+    *MY::dist_core = sub {
+	<<'EOF';
+dist :
+	$(NOECHO) $(ECHO) "Sorry, use a newer EUMM!"
+
+EOF
+    };
+}
+
 WriteMakefile(
     NAME              => 'Tk::FlatCheckbox',
-    VERSION           => '0.08',
+    VERSION           => '0.09',
     PREREQ_PM         => { Tk => 0 },
     ($] >= 5.005 ?
       (ABSTRACT_FROM  => 'lib/Tk/FlatCheckbox.pm',
        AUTHOR         => 'Slaven Rezic <srezic@cpan.org>') : ()),
+    ($eumm_recent_enough ?
+      (META_ADD => { resources => { repository => 'git://github.com/eserte/tk-flatcheckbox.git' } }) : ()),
 );
 
 sub MY::postamble {
@@ -37,11 +52,11 @@ demo :: pure_all
 EOF
     }
 
-    if (defined $ENV{USER} && $ENV{USER} eq 'eserte' && $^O =~ /bsd/i && -f "../../perl.release.mk") {
+    if ($is_devel_host) {
 	$postamble .= <<'EOF';
 
 .include "../../perl.release.mk"
-.include "../../perl.cvs.mk"
+.include "../../perl.git.mk"
 
 EOF
     }
