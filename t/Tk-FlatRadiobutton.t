@@ -2,10 +2,9 @@
 # -*- perl -*-
 
 #
-# $Id: Tk-FlatRadiobutton.t,v 1.2 2007/10/19 21:08:58 eserte Exp $
 # Author: Slaven Rezic
 #
-# Copyright (C) 2001,2004,2007 Slaven Rezic. All rights reserved.
+# Copyright (C) 2001,2004,2007,2012 Slaven Rezic. All rights reserved.
 # This program is free software; you can redistribute it and/or
 # modify it under the same terms as Perl itself.
 #
@@ -27,6 +26,12 @@ BEGIN {
 }
 
 if (!defined $ENV{BATCH}) { $ENV{BATCH} = 1 }
+
+my $mw = eval { tkinit };
+if (!$mw) {
+    print "1..0 # skip: cannot create MainWindow\n";
+    CORE::exit(0);
+}
 
 plan tests => 9;
 
