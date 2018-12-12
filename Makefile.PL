@@ -16,6 +16,7 @@ EOF
 WriteMakefile(
     NAME              => 'Tk::FlatCheckbox',
     VERSION           => '0.09',
+    LICENSE           => 'perl_5',
     PREREQ_PM         => { Tk => 0 },
     ($] >= 5.005 ?
       (ABSTRACT_FROM  => 'lib/Tk/FlatCheckbox.pm',
