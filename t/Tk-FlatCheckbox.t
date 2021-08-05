@@ -4,7 +4,7 @@
 #
 # Author: Slaven Rezic
 #
-# Copyright (C) 1998,2004,2007,2012 Slaven Rezic. All rights reserved.
+# Copyright (C) 1998,2004,2007,2012,2021 Slaven Rezic. All rights reserved.
 # This program is free software; you can redistribute it and/or
 # modify it under the same terms as Perl itself.
 #
@@ -27,8 +27,8 @@ BEGIN {
 
 if (!defined $ENV{BATCH}) { $ENV{BATCH} = 1 }
 
-my $mw = eval { tkinit };
-if (!$mw) {
+my $top = eval { tkinit };
+if (!$top) {
     print "1..0 # skip: cannot create MainWindow\n";
     CORE::exit(0);
 }
@@ -37,7 +37,6 @@ plan tests => 10;
 
 use_ok("Tk::FlatCheckbox");
 
-my $top = tkinit;
 $top->geometry("+10+10");
 $top->Label(-text => "Tk::FlatCheckbox")->pack;
 #$top->optionAdd("*FlatCheckbox*background" => "green", "userDefault");
